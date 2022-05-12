@@ -73,4 +73,4 @@ The `Example.url/0` logic is only executed once.
 
 ### 0.0.1 (2022-05-12)
 
-First release for testing.
+First basic release. [Hex](https://hex.pm/packages/cache_me/0.0.1)
