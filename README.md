@@ -13,6 +13,9 @@ Add `cache_me` to your list of dependencies in `mix.exs`:
 Then add `use CacheMe` to any module using caching
 and `@cache true` to any function you would like to cache.
 
+Use `CacheMe.uncached(<module>, <function>, <args>)` to skip the cache.
+The syntax is the same as `apply/3`.
+
 ## Example
 
 ```elixir
@@ -43,7 +46,7 @@ Use:
 ```shell
 iex(1)> Example.url
 
-23:17:20.556 [warning] `MY_AUTH_URL` not set, defaulting to: 'https://example.com/'.
+16:30:03.556 [warning] `MY_AUTH_URL` not set, defaulting to: 'https://example.com/'.
 %URI{
   authority: "example.com",
   fragment: nil,
@@ -68,6 +71,27 @@ iex(2)> Example.url
 ```
 
 The `Example.url/0` logic is only executed once.
+
+It is possible to skip the cache using `CacheMe.uncached(<module>, <function>, <args>)`.
+In this case `CacheMe.uncached(Example, :url, [])`.
+
+Continuing from above:
+
+```shell
+iex(3)> CacheMe.uncached(Example, :url, [])
+
+16:30:17.690 [warning] `MY_AUTH_URL` not set, defaulting to: 'https://example.com/'.
+%URI{
+  authority: "example.com",
+  fragment: nil,
+  host: "example.com",
+  path: "/",
+  port: 443,
+  query: nil,
+  scheme: "https",
+  userinfo: nil
+}
+```
 
 ## Changelog
 
