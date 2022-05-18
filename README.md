@@ -95,6 +95,15 @@ iex(3)> CacheMe.uncached(Example, :url, [])
 
 ## Changelog
 
+
+### 0.0.3 (2022-05-16)
+
+Relax Elixir constraints.
+
+### 0.0.2 (2022-05-16)
+
+Add missing `:crypto` to extra_applications.
+
 ### 0.0.1 (2022-05-12)
 
 First basic release. [Hex](https://hex.pm/packages/cache_me/0.0.1)

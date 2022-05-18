@@ -5,8 +5,8 @@ defmodule CacheMe.MixProject do
     [
       app: :cache_me,
       description: "Cache functions without hassle.",
-      version: "0.0.1",
-      elixir: "~> 1.13",
+      version: "0.0.5",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
@@ -44,7 +44,7 @@ defmodule CacheMe.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:crypto, :logger],
       mod: {CacheMe.Application, []}
     ]
   end
