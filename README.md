@@ -95,6 +95,9 @@ iex(3)> CacheMe.uncached(Example, :url, [])
 
 ## Changelog
 
+### 0.0.4 (2022-05-18)
+
+Remove `defdelegate` from compile logic to better support `defp`.
 
 ### 0.0.3 (2022-05-16)
 

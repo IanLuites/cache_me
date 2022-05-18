@@ -35,7 +35,9 @@ defmodule CacheMe.Cache.Compile do
     stripped = strip_defaults(args)
 
     quote do
-      defdelegate unquote(name)(unquote_splicing(args)), to: unquote(cache)
+      unquote(kind)(unquote(name)(unquote_splicing(args)),
+        do: unquote(cache).unquote(name)(unquote_splicing(stripped))
+      )
 
       defmodule unquote(cache) do
         @moduledoc false
