@@ -31,15 +31,17 @@ defmodule CacheMe do
   defmacro __using__(opts \\ [])
 
   defmacro __using__(_opts) do
-    Module.register_attribute(__CALLER__.module, :cached_functions, accumulate: true)
-    Module.put_attribute(__CALLER__.module, :cached, %{})
+    unless Module.has_attribute?(__CALLER__.module, :cached_functions) do
+      Module.register_attribute(__CALLER__.module, :cached_functions, accumulate: true)
+      Module.put_attribute(__CALLER__.module, :cached, %{})
 
-    quote do
-      @cache false
-      _ = @cache
+      quote do
+        @cache false
+        _ = @cache
 
-      @on_definition {unquote(__MODULE__), :define}
-      @before_compile {unquote(__MODULE__), :wrap}
+        @on_definition {unquote(__MODULE__), :define}
+        @before_compile {unquote(__MODULE__), :wrap}
+      end
     end
   end
 

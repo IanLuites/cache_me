@@ -95,6 +95,10 @@ iex(3)> CacheMe.uncached(Example, :url, [])
 
 ## Changelog
 
+### 0.0.5 (2022-05-18)
+
+Protect against including (`use CacheMe`) multiple times inside the same module.
+
 ### 0.0.4 (2022-05-18)
 
 Remove `defdelegate` from compile logic to better support `defp`.
