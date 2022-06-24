@@ -95,6 +95,10 @@ iex(3)> CacheMe.uncached(Example, :url, [])
 
 ## Changelog
 
+### 0.0.6 (2022-06-24)
+
+Protect against concurrent compiles of cached values.
+
 ### 0.0.5 (2022-05-18)
 
 Protect against including (`use CacheMe`) multiple times inside the same module.

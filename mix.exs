@@ -5,7 +5,7 @@ defmodule CacheMe.MixProject do
     [
       app: :cache_me,
       description: "Cache functions without hassle.",
-      version: "0.0.5",
+      version: "0.0.6",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),

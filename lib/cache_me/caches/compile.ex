@@ -4,7 +4,7 @@ defmodule CacheMe.Cache.Compile do
 
   defp hash(payload), do: :crypto.hash(:md5, payload)
 
-  def set(module, name, args, value) do
+  def set(module, name, args, value, attempts \\ 1) do
     Code.compiler_options(ignore_module_conflict: true)
 
     Code.compile_quoted(
@@ -21,6 +21,19 @@ defmodule CacheMe.Cache.Compile do
     Code.compiler_options(ignore_module_conflict: false)
 
     value
+  rescue
+    e in CompileError ->
+      cond do
+        apply(module, name, args) == value ->
+          value
+
+        attempts > 5 ->
+          reraise(e, __STACKTRACE__)
+
+        :wait_retry ->
+          :timer.sleep(Enum.random(1..25))
+          set(module, name, args, value, attempts + 1)
+      end
   end
 
   def generate(module, kind, name, args, _opts) do
